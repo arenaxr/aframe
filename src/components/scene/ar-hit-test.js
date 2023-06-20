@@ -196,10 +196,12 @@ HitTest.updateAnchorPoses = function (frame, refSpace) {
 
     if (anchorPose) {
       object3DOptions = HitTest.prototype.anchorToObject3D.get(anchor);
-      offset = object3DOptions.offset;
-      object3D = object3DOptions.object3D;
+      if (object3DOptions) { // This may not be mapped if anchor was created elsewhere
+        offset = object3DOptions.offset;
+        object3D = object3DOptions.object3D;
 
-      applyPose(anchorPose, object3D, offset);
+        applyPose(anchorPose, object3D, offset);
+      }
     }
   });
 };
